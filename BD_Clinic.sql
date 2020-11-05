@@ -100,6 +100,7 @@ CREATE TABLE IF NOT EXISTS tb_cashier (
     dni CHAR ( 8 ) NOT NULL UNIQUE
 );
 
+
 CREATE TABLE IF NOT EXISTS tb_proof_of_purchase (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
     id_appointment INT NOT NULL UNIQUE ,
