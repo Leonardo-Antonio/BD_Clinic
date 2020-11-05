@@ -63,5 +63,6 @@ ON ( tb_doctor.id = tb_hour.id  )
 LEFT JOIN tb_turn
 ON ( tb_hour.id_turn = tb_turn.id );
 
+
 SELECT * FROM tb_cashier;
 SELECT * FROM tb_proof_of_purchase;
