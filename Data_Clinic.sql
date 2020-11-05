@@ -18,16 +18,16 @@ VALUES
 INSERT INTO tb_doctor ( name, last_name, id_hour, id_speciality )
 VALUES
        ( "William", "Osler", 2, 1 ) ,
-       ( "Ignaz", "Semmelweis", 1, 3 ),
-       ( "Sigmund", "Freud", 1, 2 );
+       ( "Ignaz", "Semmelweis", 1, 3 ) ,
+       ( "Sigmund", "Freud", 1, 2 ) ;
 
 INSERT INTO tb_gender ( gender )
 VALUES
-       ( "Masculino" ), ( "Femenino" );
+       ( "Masculino" ), ( "Femenino" ) ;
 
 INSERT INTO tb_type_identification ( type )
 VALUES
-       ( "DNI" ), ( "Pasaporte" ), ( "Carnet de extrangeria" );
+       ( "DNI" ), ( "Pasaporte" ), ( "Carnet de extrangeria" ) ;
 
 INSERT INTO tb_patient ( name, last_name, phone, email, identification, id_gender, id_type_identification )
 VALUES
