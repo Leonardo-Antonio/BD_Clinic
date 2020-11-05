@@ -46,6 +46,22 @@ ON ( tb_diagnosis.id_doctor = tb_doctor.id );
 
 SELECT * FROM tb_receptionist;
 SELECT * FROM tb_contrareferencia;
-SELECT * FROM tb_appointment;
+
+SELECT tb_a.id, tb_a.appointment_time,
+       CONCAT( tb_patient.name, " ", tb_patient.last_name ) 'Paciente',
+       CONCAT( tb_doctor.name, " ", tb_doctor.last_name ) 'Doctor', turn,
+       CONCAT( tb_receptionist.name, " ", tb_receptionist.last_name ) 'Recepcionista'
+FROM tb_appointment tb_a
+LEFT JOIN tb_patient
+ON ( tb_a.id_patient = tb_patient.id )
+LEFT JOIN tb_doctor
+ON ( tb_a.id_doctor = tb_doctor.id )
+LEFT JOIN tb_receptionist
+ON ( tb_a.id_receptionist = tb_receptionist.id )
+LEFT JOIN tb_hour
+ON ( tb_doctor.id = tb_hour.id  )
+LEFT JOIN tb_turn
+ON ( tb_hour.id_turn = tb_turn.id );
+
 SELECT * FROM tb_cashier;
 SELECT * FROM tb_proof_of_purchase;
