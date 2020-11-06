@@ -35,37 +35,48 @@ CREATE TABLE IF NOT EXISTS tb_gender (
     gender VARCHAR ( 20 ) NOT NULL UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS tb_marital_status (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+    marital_status VARCHAR ( 40 ) NOT NULL UNIQUE
+);
+
+
 CREATE TABLE IF NOT EXISTS tb_type_identification (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
     type VARCHAR ( 40 ) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS tb_patient (
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
-    name VARCHAR ( 40 ) NOT NULL ,
-    last_name VARCHAR ( 40 ) NOT NULL ,
-    phone CHAR ( 9 ) ,
-    email VARCHAR ( 50 ),
-    identification VARCHAR ( 20 ) NOT NULL ,
-    id_gender INT NOT NULL ,
-    id_type_identification INT NOT NULL ,
-    FOREIGN KEY ( id_gender ) REFERENCES tb_gender ( id ) ,
-    FOREIGN KEY ( id_type_identification ) REFERENCES tb_type_identification ( id )
+CREATE TABLE IF NOT EXISTS tb_clinic_history (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE IF NOT EXISTS tb_clinic_history (
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
-    id_patient INT NOT NULL UNIQUE ,
-    FOREIGN KEY ( id_patient ) REFERENCES tb_patient ( id )
+CREATE TABLE IF NOT EXISTS tb_patient (
+    id VARCHAR ( 30 ) NOT NULL PRIMARY KEY ,
+    name VARCHAR ( 30 ) NOT NULL ,
+    last_name VARCHAR ( 50 ) NOT NULL ,
+    phone CHAR ( 9 ) ,
+    email VARCHAR ( 50 ) ,
+    birthdate DATE NOT NULL ,
+    address VARCHAR ( 50 ) NOT NULL ,
+    seguro BOOL NOT NULL DEFAULT FALSE ,
+    hopital_perteneciente VARCHAR ( 50 ) ,
+    id_type_identification INT NOT NULL ,
+    id_gender INT NOT NULL ,
+    id_marital_status INT NOT NULL ,
+    id_clinic_history INT NOT NULL ,
+    FOREIGN KEY ( id_gender ) REFERENCES tb_gender ( id ) ,
+    FOREIGN KEY ( id_type_identification ) REFERENCES tb_type_identification ( id ) ,
+    FOREIGN KEY ( id_marital_status ) REFERENCES tb_marital_status ( id ) ,
+    FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history ( id )
 );
 -- GENERATE OTHER TABLES
 CREATE TABLE IF NOT EXISTS tb_diagnosis (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
-    disease VARCHAR ( 50 ) NOT NULL ,
-    id_doctor INT NOT NULL ,
-    id_history_clinic INT NOT NULL ,
-    FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) ,
-    FOREIGN KEY ( id_history_clinic ) REFERENCES tb_clinic_history ( id )
+    reasons_for_consultation VARCHAR ( 80 ) NOT NULL ,
+    current_illness VARCHAR ( 50 ) NOT NULL ,
+    pathological_history VARCHAR ( 100 ) NOT NULL ,
+    id_clinic_history INT NOT NULL ,
+    FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id )
 );
 -- FIN
 CREATE TABLE IF NOT EXISTS tb_receptionist (
@@ -77,19 +88,29 @@ CREATE TABLE IF NOT EXISTS tb_receptionist (
 
 CREATE TABLE IF NOT EXISTS tb_contrareferencia (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+    est_ref_name VARCHAR ( 50 ) NOT NULL ,
+    est_ref_dir VARCHAR ( 80 ) NOT NULL ,
+    est_contref_name VARCHAR ( 50 ) NOT NULL ,
+    est_contref_dir VARCHAR ( 80 ) NOT NULL ,
+    est_contref_diagnosis TEXT NOT NULL ,
+    treatment VARCHAR ( 100 ) ,
+    ind_aps VARCHAR ( 100 ) ,
+    date_contref DATE NOT NULL ,
+    id_patient VARCHAR ( 30 ) NOT NULL ,
+    id_doctor INT NOT NULL ,
     id_receptionist INT NOT NULL ,
+    FOREIGN KEY ( id_patient ) REFERENCES tb_patient ( id ) ,
+    FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) ,
     FOREIGN KEY ( id_receptionist ) REFERENCES tb_receptionist ( id )
 );
 
 CREATE TABLE IF NOT EXISTS tb_appointment (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
-    appointment_time TIME NOT NULL ,
-    seguro BOOL NOT NULL DEFAULT FALSE ,
-    id_patient INT NOT NULL ,
-    id_doctor INT NOT NULL ,
+    hour TIME NOT NULL ,
+    date DATE NOT NULL ,
+    id_patient VARCHAR ( 30 ) NOT NULL ,
     id_receptionist INT NOT NULL ,
     FOREIGN KEY ( id_patient ) REFERENCES tb_patient ( id ) ,
-    FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) ,
     FOREIGN KEY ( id_receptionist ) REFERENCES tb_receptionist ( id )
 );
 
