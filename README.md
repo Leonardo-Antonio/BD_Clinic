@@ -6,6 +6,7 @@
 - speciality -> especialidad [*]
 - doctor [*]
 - gender -> genero [*]
+- marital status -> estado civil [*]
 - type identification -> tipo de identidicación [*]
 - patient -> paciente [*]
 - clinic history -> historia clinica [*]
