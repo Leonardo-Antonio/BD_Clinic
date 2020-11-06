@@ -8,6 +8,7 @@
 - gender -> genero [*]
 - marital status -> estado civil [*]
 - type identification -> tipo de identidicación [*]
+- health insurance -> seguro de salud [*]
 - patient -> paciente [*]
 - clinic history -> historia clinica [*]
 - diagnosis -> diagnostico [-*]
