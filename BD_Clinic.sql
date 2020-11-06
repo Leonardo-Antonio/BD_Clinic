@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS tb_contrareferencia (
 CREATE TABLE IF NOT EXISTS tb_appointment (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
     appointment_time TIME NOT NULL ,
+    seguro BOOL NOT NULL DEFAULT FALSE ,
     id_patient INT NOT NULL ,
     id_doctor INT NOT NULL ,
     id_receptionist INT NOT NULL ,

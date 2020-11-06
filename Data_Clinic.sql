@@ -53,9 +53,8 @@ VALUES
 
 INSERT INTO tb_appointment ( appointment_time, id_patient, id_doctor, id_receptionist )
 VALUES
-        ( "08:30:00", 1, 1, 2 ) ,
-        ( "14:30:00", 1, 1, 2 ) ,
-        ( "16:30:00", 2, 2, 1 ) ;
+        ( "08:30:00", 1, 2, 1 ) ,
+        ( "16:30:00", 2, 1, 2 ) ;
 
 INSERT INTO tb_cashier ( name, last_name, dni )
 VALUES
@@ -63,4 +62,4 @@ VALUES
 
 INSERT INTO tb_proof_of_purchase ( id_appointment, id_cashier )
 VALUES
-        ( 2, 1 ), (3, 1) ;
+        ( 2, 1 ), (1, 1) ;

@@ -6,6 +6,7 @@ SELECT * FROM tb_speciality;
 
 SELECT tb_doctor.id, CONCAT(tb_doctor.name, " ", tb_doctor.last_name) 'Nombres y apellidos',
        tb_hour.entry, tb_hour.departure,
+       tb_turn.turn,
        tb_speciality.speciality
 FROM tb_doctor
 LEFT JOIN tb_turn
@@ -65,4 +66,24 @@ ON ( tb_hour.id_turn = tb_turn.id );
 
 
 SELECT * FROM tb_cashier;
-SELECT * FROM tb_proof_of_purchase;
+SELECT * FROM tb_appointment
+LEFT JOIN tb_patient
+ON ( tb_appointment.id = tb_patient.id );
+
+SELECT tb_pop.id,
+       tb_appointment.appointment_time,
+       tb_speciality.speciality,
+       tb_turn.turn
+FROM tb_proof_of_purchase tb_pop
+INNER JOIN tb_appointment
+ON ( tb_pop.id_appointment = tb_appointment.id )
+LEFT JOIN tb_patient
+ON ( tb_appointment.id = tb_patient.id )
+LEFT JOIN tb_doctor
+ON ( tb_appointment.id_doctor = tb_doctor.id )
+LEFT JOIN tb_speciality
+ON ( tb_doctor.id_speciality = tb_speciality.id )
+LEFT JOIN tb_hour
+ON ( tb_doctor.id_hour = tb_hour.id )
+LEFT JOIN tb_turn
+ON ( tb_hour.id_turn = tb_turn.id )
