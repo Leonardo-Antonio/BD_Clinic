@@ -19,5 +19,5 @@
 - proof of purchase -> comprobante de venta [*]
 
 # Diagrama
-![diagrama db](db_clinic.png)
+![diagram_db](db_clinic.png)
 
