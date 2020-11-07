@@ -227,7 +227,9 @@ CREATE TABLE IF NOT EXISTS tb_diagnosis (
     current_illness VARCHAR ( 50 ) NOT NULL ,
     pathological_history VARCHAR ( 100 ) NOT NULL ,
     id_clinic_history INT NOT NULL ,
-    FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id )
+    id_doctor INT NOT NULL ,
+    FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id ) ,
+    FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor( id )
 );
 -- FIN
 CREATE TABLE IF NOT EXISTS tb_receptionist (
