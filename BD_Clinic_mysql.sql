@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS tb_doctor (
     name VARCHAR ( 40 ) NOT NULL ,
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
+    dni CHAR ( 8 ) NOT NULL ,
+    password VARCHAR ( 256 ) NOT NULL ,
     id_hour INT NOT NULL ,
     id_speciality INT NOT NULL ,
     FOREIGN KEY ( id_hour ) REFERENCES tb_hour ( id ) ,
@@ -68,7 +70,6 @@ CREATE TABLE IF NOT EXISTS tb_patient (
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
     phone CHAR ( 9 ) ,
-    email VARCHAR ( 50 ) ,
     birthdate DATE NOT NULL ,
     address VARCHAR ( 50 ) NOT NULL ,
     seguro BOOL NOT NULL DEFAULT FALSE ,
@@ -90,8 +91,8 @@ CREATE TABLE IF NOT EXISTS tb_patient (
 CREATE TABLE IF NOT EXISTS tb_diagnosis (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
     reasons_for_consultation VARCHAR ( 80 ) NOT NULL ,
-    current_illness VARCHAR ( 50 ) NOT NULL ,
-    pathological_history VARCHAR ( 100 ) NOT NULL ,
+    current_illness VARCHAR ( 50 ) ,
+    pathological_history VARCHAR ( 100 ) ,
     id_clinic_history INT NOT NULL ,
     id_doctor INT NOT NULL ,
     FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id ) ,
@@ -101,8 +102,10 @@ CREATE TABLE IF NOT EXISTS tb_diagnosis (
 CREATE TABLE IF NOT EXISTS tb_receptionist (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
     name VARCHAR ( 40 ) NOT NULL ,
-    last_name VARCHAR ( 40 ) NOT NULL ,
-    dni CHAR ( 8 ) NOT NULL UNIQUE
+    a_p VARCHAR ( 40 ) NOT NULL ,
+    a_m VARCHAR ( 40 ) NOT NULL ,
+    dni CHAR ( 8 ) NOT NULL UNIQUE ,
+    password VARCHAR ( 256 ) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tb_contrareferencia (
@@ -113,7 +116,7 @@ CREATE TABLE IF NOT EXISTS tb_contrareferencia (
     est_contref_dir VARCHAR ( 80 ) NOT NULL ,
     est_contref_diagnosis TEXT NOT NULL ,
     treatment VARCHAR ( 100 ) ,
-    ind_aps VARCHAR ( 100 ) ,
+    ind_aps TEXT ,
     date_contref DATE NOT NULL ,
     id_patient VARCHAR ( 30 ) NOT NULL ,
     id_doctor INT NOT NULL ,
@@ -141,7 +144,8 @@ CREATE TABLE IF NOT EXISTS tb_cashier (
     name VARCHAR ( 40 ) NOT NULL ,
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
-    dni CHAR ( 8 ) NOT NULL UNIQUE
+    dni CHAR ( 8 ) NOT NULL UNIQUE ,
+    password VARCHAR ( 256 ) NOT NULL
 );
 
 
