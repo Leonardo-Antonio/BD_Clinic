@@ -35,7 +35,7 @@ VALUES
 
 INSERT INTO tb_clinic_history ( id )
 VALUES
-       ( 1 ), ( 2 ), ( 3 );
+       ( null ), ( null ), ( null );
 
 INSERT INTO tb_health_insurance ( name )
 VALUES
