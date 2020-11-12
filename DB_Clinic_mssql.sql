@@ -30,6 +30,8 @@ CREATE TABLE tb_doctor (
     name VARCHAR ( 40 ) NOT NULL ,
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
+    dni CHAR ( 8 ) NOT NULL UNIQUE ,
+    password VARCHAR ( 256 ) NOT NULL ,
     id_hour INT NOT NULL ,
     id_speciality INT NOT NULL ,
     FOREIGN KEY ( id_hour ) REFERENCES tb_hour ( id ) ,
@@ -95,8 +97,8 @@ CREATE TABLE tb_patient (
 CREATE TABLE tb_diagnosis (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     reasons_for_consultation VARCHAR ( 80 ) NOT NULL ,
-    current_illness VARCHAR ( 50 ) NOT NULL ,
-    pathological_history VARCHAR ( 100 ) NOT NULL ,
+    current_illness VARCHAR ( 50 ) ,
+    pathological_history VARCHAR ( 100 ) ,
     id_clinic_history INT NOT NULL ,
     id_doctor INT NOT NULL ,
     FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id ) ,
@@ -108,7 +110,8 @@ CREATE TABLE tb_receptionist (
     name VARCHAR ( 40 ) NOT NULL ,
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
-    dni CHAR ( 8 ) NOT NULL UNIQUE
+    dni CHAR ( 8 ) NOT NULL UNIQUE ,
+    password VARCHAR ( 256 ) NOT NULL
 );
 
 CREATE TABLE tb_contrareferencia (
@@ -117,9 +120,9 @@ CREATE TABLE tb_contrareferencia (
     est_ref_dir VARCHAR ( 80 ) NOT NULL ,
     est_contref_name VARCHAR ( 50 ) NOT NULL ,
     est_contref_dir VARCHAR ( 80 ) NOT NULL ,
-    est_contref_diagnosis TEXT NOT NULL ,
+    est_contref_diagnosis NOT NULL ,
     treatment VARCHAR ( 100 ) ,
-    ind_aps VARCHAR ( 100 ) ,
+    ind_aps VARCHAR ( 256 ),
     date_contref DATE NOT NULL ,
     id_patient VARCHAR ( 30 ) NOT NULL ,
     id_doctor INT NOT NULL ,
@@ -147,7 +150,8 @@ CREATE TABLE tb_cashier (
     name VARCHAR ( 40 ) NOT NULL ,
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
-    dni CHAR ( 8 ) NOT NULL UNIQUE
+    dni CHAR ( 8 ) NOT NULL UNIQUE ,
+    password VARCHAR ( 256 ) NOT NULL
 );
 
 
