@@ -169,6 +169,8 @@ CREATE TABLE IF NOT EXISTS tb_doctor (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
     name VARCHAR ( 40 ) NOT NULL ,
     last_name VARCHAR ( 40 ) NOT NULL ,
+    dni VARCHAR ( 8 ) NOT NULL UNIQUE ,
+    password VARCHAR ( 256 ) NOT NULL ,
     id_hour INT NOT NULL ,
     id_speciality INT NOT NULL ,
     FOREIGN KEY ( id_hour ) REFERENCES tb_hour ( id ) ,
@@ -204,13 +206,14 @@ CREATE TABLE IF NOT EXISTS tb_clinic_history (
 CREATE TABLE IF NOT EXISTS tb_patient (
     id VARCHAR ( 30 ) NOT NULL PRIMARY KEY ,
     name VARCHAR ( 30 ) NOT NULL ,
-    last_name VARCHAR ( 50 ) NOT NULL ,
+    a_p VARCHAR ( 50 ) NOT NULL ,
+    a_m VARCHAR ( 50 ) NOT NULL ,
     phone CHAR ( 9 ) ,
     email VARCHAR ( 50 ) ,
     birthdate DATE NOT NULL ,
     address VARCHAR ( 50 ) NOT NULL ,
     seguro BOOL NOT NULL DEFAULT FALSE ,
-    hopital_perteneciente VARCHAR ( 50 ) ,
+    hospital_perteneciente VARCHAR ( 50 ) ,
     id_type_identification INT NOT NULL ,
     id_gender INT NOT NULL ,
     id_marital_status INT NOT NULL ,
@@ -239,7 +242,7 @@ CREATE TABLE IF NOT EXISTS tb_receptionist (
     name VARCHAR ( 40 ) NOT NULL ,
     last_name VARCHAR ( 40 ) NOT NULL ,
     dni CHAR ( 8 ) NOT NULL UNIQUE ,
-    password VARCHAR ( 30 ) NOT NULL
+    password VARCHAR ( 256 ) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tb_contrareferencia (
@@ -278,7 +281,7 @@ CREATE TABLE IF NOT EXISTS tb_cashier (
     name VARCHAR ( 40 ) NOT NULL ,
     last_name VARCHAR ( 40 ) NOT NULL ,
     dni CHAR ( 8 ) NOT NULL UNIQUE ,
-    password VARCHAR ( 30 ) NOT NULL
+    password VARCHAR ( 256 ) NOT NULL
 );
 
 
