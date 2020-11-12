@@ -9,6 +9,7 @@
 - marital status -> estado civil [*]
 - type identification -> tipo de identidicación [*]
 - health insurance -> seguro de salud [*]
+- district -> distrito [*]
 - patient -> paciente [*]
 - clinic history -> historia clinica [*]
 - diagnosis -> diagnostico [-*]
