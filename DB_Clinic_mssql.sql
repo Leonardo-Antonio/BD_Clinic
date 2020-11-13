@@ -28,7 +28,8 @@ CREATE TABLE tb_speciality (
 CREATE TABLE tb_doctor (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     name VARCHAR ( 40 ) NOT NULL ,
-    last_name VARCHAR ( 40 ) NOT NULL ,
+    a_p VARCHAR ( 40 ) NOT NULL ,
+    a_m VARCHAR ( 40 ) NOT NULL ,
     id_hour INT NOT NULL ,
     id_speciality INT NOT NULL ,
     FOREIGN KEY ( id_hour ) REFERENCES tb_hour ( id ) ,
@@ -70,9 +71,9 @@ CREATE TABLE tb_district (
 CREATE TABLE tb_patient (
     id VARCHAR ( 30 ) NOT NULL PRIMARY KEY ,
     name VARCHAR ( 30 ) NOT NULL ,
-    last_name VARCHAR ( 50 ) NOT NULL ,
+    a_p VARCHAR ( 50 ) NOT NULL ,
+    a_m VARCHAR ( 50 ) NOT NULL ,
     phone CHAR ( 9 ) ,
-    email VARCHAR ( 50 ) ,
     birthdate DATE NOT NULL ,
     address VARCHAR ( 50 ) NOT NULL ,
     seguro BIT NOT NULL DEFAULT 1 ,
@@ -105,7 +106,8 @@ CREATE TABLE tb_diagnosis (
 CREATE TABLE tb_receptionist (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     name VARCHAR ( 40 ) NOT NULL ,
-    last_name VARCHAR ( 40 ) NOT NULL ,
+    a_p VARCHAR ( 40 ) NOT NULL ,
+    a_m VARCHAR ( 40 ) NOT NULL ,
     dni CHAR ( 8 ) NOT NULL UNIQUE
 );
 
@@ -143,7 +145,8 @@ CREATE TABLE tb_appointment (
 CREATE TABLE tb_cashier (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     name VARCHAR ( 40 ) NOT NULL ,
-    last_name VARCHAR ( 40 ) NOT NULL ,
+    a_p VARCHAR ( 40 ) NOT NULL ,
+    a_m VARCHAR ( 40 ) NOT NULL ,
     dni CHAR ( 8 ) NOT NULL UNIQUE
 );
 
