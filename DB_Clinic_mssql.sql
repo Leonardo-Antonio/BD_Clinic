@@ -61,7 +61,7 @@ CREATE TABLE tb_health_insurance (
 
 
 CREATE TABLE tb_clinic_history (
-    id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY
+    id INT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE tb_district (
