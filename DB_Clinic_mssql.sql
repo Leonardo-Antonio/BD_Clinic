@@ -61,7 +61,7 @@ CREATE TABLE tb_health_insurance (
 
 
 CREATE TABLE tb_clinic_history (
-    id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY
+    id INT NOT NULL PRIMARY KEY
 );
 
 CREATE TABLE tb_district (
@@ -120,7 +120,7 @@ CREATE TABLE tb_contrareferencia (
     est_ref_dir VARCHAR ( 80 ) NOT NULL ,
     est_contref_name VARCHAR ( 50 ) NOT NULL ,
     est_contref_dir VARCHAR ( 80 ) NOT NULL ,
-    est_contref_diagnosis NOT NULL ,
+    est_contref_diagnosis VARCHAR( 80 ) NOT NULL ,
     treatment VARCHAR ( 100 ) ,
     ind_aps VARCHAR ( 256 ),
     date_contref DATE NOT NULL ,
