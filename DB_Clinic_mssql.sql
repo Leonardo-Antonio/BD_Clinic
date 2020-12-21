@@ -1,9 +1,7 @@
 DROP DATABASE db_clinic;
-GO
 CREATE DATABASE db_clinic;
-GO
 USE db_clinic;
-GO
+
 
 CREATE TABLE tb_turn (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
@@ -34,6 +32,7 @@ CREATE TABLE tb_doctor (
     password VARCHAR ( 256 ) NOT NULL ,
     id_hour INT NOT NULL ,
     id_speciality INT NOT NULL ,
+	state BIT DEFAULT 1,
     FOREIGN KEY ( id_hour ) REFERENCES tb_hour ( id ) ,
     FOREIGN KEY ( id_speciality ) REFERENCES tb_speciality ( id )
 );
@@ -48,7 +47,6 @@ CREATE TABLE tb_marital_status (
     marital_status VARCHAR ( 40 ) NOT NULL UNIQUE
 );
 
-
 CREATE TABLE tb_type_identification (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     type VARCHAR ( 40 ) NOT NULL UNIQUE
@@ -59,7 +57,6 @@ CREATE TABLE tb_health_insurance (
     name VARCHAR ( 50 ) NOT NULL UNIQUE
 );
 
-
 CREATE TABLE tb_clinic_history (
     id INT NOT NULL PRIMARY KEY
 );
@@ -68,7 +65,6 @@ CREATE TABLE tb_district (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     district VARCHAR ( 50 ) NOT NULL UNIQUE , 
 );
-
 
 CREATE TABLE tb_patient (
     id VARCHAR ( 30 ) NOT NULL PRIMARY KEY ,
@@ -86,6 +82,7 @@ CREATE TABLE tb_patient (
     id_clinic_history INT NOT NULL ,
     id_health_insurance INT NOT NULL ,
     id_district INT NOT NULL ,
+	state BIT DEFAULT 1,
     FOREIGN KEY ( id_gender ) REFERENCES tb_gender ( id ) ,
     FOREIGN KEY ( id_type_identification ) REFERENCES tb_type_identification ( id ) ,
     FOREIGN KEY ( id_marital_status ) REFERENCES tb_marital_status ( id ) ,
@@ -93,7 +90,7 @@ CREATE TABLE tb_patient (
     FOREIGN KEY ( id_health_insurance ) REFERENCES tb_health_insurance ( id ) ,
     FOREIGN KEY ( id_district ) REFERENCES tb_district ( id )
 );
--- GENERATE OTHER TABLES
+
 CREATE TABLE tb_diagnosis (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     reasons_for_consultation VARCHAR ( 80 ) NOT NULL ,
@@ -104,14 +101,15 @@ CREATE TABLE tb_diagnosis (
     FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id ) ,
     FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor( id )
 );
--- FIN
+
 CREATE TABLE tb_receptionist (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
     name VARCHAR ( 40 ) NOT NULL ,
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
     dni CHAR ( 8 ) NOT NULL UNIQUE ,
-    password VARCHAR ( 256 ) NOT NULL
+    password VARCHAR ( 256 ) NOT NULL,
+	state BIT DEFAULT 1
 );
 
 CREATE TABLE tb_contrareferencia (
@@ -127,6 +125,7 @@ CREATE TABLE tb_contrareferencia (
     id_patient VARCHAR ( 30 ) NOT NULL ,
     id_doctor INT NOT NULL ,
     id_receptionist INT NOT NULL ,
+	state BIT DEFAULT 1,
     FOREIGN KEY ( id_patient ) REFERENCES tb_patient ( id ) ,
     FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) ,
     FOREIGN KEY ( id_receptionist ) REFERENCES tb_receptionist ( id )
@@ -139,11 +138,11 @@ CREATE TABLE tb_appointment (
     id_doctor INT NOT NULL ,
     id_patient VARCHAR ( 30 ) NOT NULL ,
     id_receptionist INT NOT NULL ,
+	state BIT DEFAULT 1,
     FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) ,
     FOREIGN KEY ( id_patient ) REFERENCES tb_patient ( id ) ,
     FOREIGN KEY ( id_receptionist ) REFERENCES tb_receptionist ( id )
 );
-
 
 CREATE TABLE tb_cashier (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
@@ -151,9 +150,9 @@ CREATE TABLE tb_cashier (
     a_p VARCHAR ( 40 ) NOT NULL ,
     a_m VARCHAR ( 40 ) NOT NULL ,
     dni CHAR ( 8 ) NOT NULL UNIQUE ,
+	state BIT DEFAULT 1,
     password VARCHAR ( 256 ) NOT NULL
 );
-
 
 CREATE TABLE tb_proof_of_purchase (
     id INT IDENTITY (1, 1) NOT NULL PRIMARY KEY ,
@@ -162,3 +161,21 @@ CREATE TABLE tb_proof_of_purchase (
     FOREIGN KEY ( id_appointment ) REFERENCES tb_appointment ( id ) ,
     FOREIGN KEY ( id_cashier ) REFERENCES tb_cashier ( id )
 );
+
+DROP TABLE tb_turn;
+DROP TABLE tb_hour;
+DROP TABLE tb_speciality;
+DROP TABLE tb_doctor;
+DROP TABLE tb_gender;
+DROP TABLE tb_marital_status;
+DROP TABLE tb_type_identification;
+DROP TABLE tb_health_insurance;
+DROP TABLE tb_clinic_history;
+DROP TABLE tb_district;
+DROP TABLE tb_patient;
+DROP TABLE tb_diagnosis;
+DROP TABLE tb_receptionist;
+DROP TABLE tb_contrareferencia;
+DROP TABLE tb_appointment;
+DROP TABLE tb_cashier;
+DROP TABLE tb_proof_of_purchase;
