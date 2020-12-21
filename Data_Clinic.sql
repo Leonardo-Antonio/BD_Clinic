@@ -101,23 +101,3 @@ VALUES
 INSERT INTO tb_proof_of_purchase ( id_appointment, id_cashier )
 VALUES
         ( 2, 1 ), (1, 1) ;
-
-
-
-CREATE PROC SP_SavaDiagnosis
-	@rc VARCHAR ( 50 ),
-	@ci VARCHAR ( 50 ),
-	@ph VARCHAR ( 100 ),
-	@idhc INT,
-	@iddoc INT
-AS
-	INSERT INTO tb_diagnosis ( 
-                                   reasons_for_consultation, 
-                                   current_illness, 
-                                   pathological_history, 
-                                   id_clinic_history, 
-                                   id_doctor
-		       		)
-		       	VALUES 
-		       		(@rc, @ci, @ph, @idhc, @iddoc)			
-GO
