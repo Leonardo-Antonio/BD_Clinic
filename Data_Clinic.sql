@@ -17,9 +17,9 @@ VALUES
 
 INSERT INTO tb_doctor ( name, a_p, a_m, dni, password, id_hour, id_speciality )
 VALUES
-       ( 'William', 'Osler', 'Semmelwei', '78965411', 'password', 2, 1 ) ,
-       ( 'Ignaz', 'Semmelweis', 'Osle', '78965412', 'password', 1, 3 ) ,
-       ( 'Sigmund', 'Freud', 'Igna', '78965413', 'password', 1, 2 ) ;
+       ( 'William', 'Osler', 'Semmelwei', '78965411', '12345678', 2, 1 ) ,
+       ( 'Ignaz', 'Semmelweis', 'Osle', '78965412', '12345678', 1, 3 ) ,
+       ( 'Sigmund', 'Freud', 'Igna', '78965413', '12345678', 1, 2 ) ;
 
 INSERT INTO tb_gender ( gender )
 VALUES
@@ -82,12 +82,11 @@ INSERT INTO tb_contrareferencia (
                                  est_contref_dir, est_contref_diagnosis, treatment,
                                  ind_aps, date_contref,
                                  id_patient,
-                                 id_doctor, id_receptionist )
+                                 id_doctor )
 VALUES
        ( 'nombre de posta', 'direccion posta', 'Maria Auxiliadora' ,
         'San Juan de Miraflores', 'diagnostico', 'tratamiento', 'indicaciones de APS', '10-10-20',
-        '71062233',
-        1, 1) ;
+        '71062233', 1) ;
 
 INSERT INTO tb_appointment ( hour, date, id_doctor, id_patient, id_receptionist )
 VALUES

@@ -1,3 +1,4 @@
+
 DROP DATABASE db_clinic;
 CREATE DATABASE db_clinic;
 USE db_clinic;
@@ -98,6 +99,8 @@ CREATE TABLE tb_diagnosis (
     pathological_history VARCHAR ( 100 ) ,
     id_clinic_history INT NOT NULL ,
     id_doctor INT NOT NULL ,
+	deleted_at DATE,
+	updated_at DATE,
     FOREIGN KEY ( id_clinic_history ) REFERENCES tb_clinic_history( id ) ,
     FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor( id )
 );
@@ -124,11 +127,10 @@ CREATE TABLE tb_contrareferencia (
     date_contref DATE NOT NULL ,
     id_patient VARCHAR ( 30 ) NOT NULL ,
     id_doctor INT NOT NULL ,
-    id_receptionist INT NOT NULL ,
-	state BIT DEFAULT 1,
+	deleted_at DATE,
+	updated_at DATE,
     FOREIGN KEY ( id_patient ) REFERENCES tb_patient ( id ) ,
-    FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) ,
-    FOREIGN KEY ( id_receptionist ) REFERENCES tb_receptionist ( id )
+    FOREIGN KEY ( id_doctor ) REFERENCES tb_doctor ( id ) 
 );
 
 CREATE TABLE tb_appointment (
@@ -162,20 +164,24 @@ CREATE TABLE tb_proof_of_purchase (
     FOREIGN KEY ( id_cashier ) REFERENCES tb_cashier ( id )
 );
 
-DROP TABLE tb_turn;
-DROP TABLE tb_hour;
-DROP TABLE tb_speciality;
-DROP TABLE tb_doctor;
-DROP TABLE tb_gender;
-DROP TABLE tb_marital_status;
-DROP TABLE tb_type_identification;
-DROP TABLE tb_health_insurance;
-DROP TABLE tb_clinic_history;
-DROP TABLE tb_district;
-DROP TABLE tb_patient;
-DROP TABLE tb_diagnosis;
-DROP TABLE tb_receptionist;
-DROP TABLE tb_contrareferencia;
-DROP TABLE tb_appointment;
-DROP TABLE tb_cashier;
 DROP TABLE tb_proof_of_purchase;
+DROP TABLE tb_cashier;
+DROP TABLE tb_appointment;
+DROP TABLE tb_contrareferencia;
+DROP TABLE tb_receptionist;
+DROP TABLE tb_diagnosis;
+DROP TABLE tb_patient;
+DROP TABLE tb_district;
+DROP TABLE tb_clinic_history;
+DROP TABLE tb_health_insurance;
+DROP TABLE tb_type_identification;
+DROP TABLE tb_marital_status;
+DROP TABLE tb_gender;
+DROP TABLE tb_doctor;
+DROP TABLE tb_speciality;
+DROP TABLE tb_hour;
+DROP TABLE tb_turn;
+
+select * from tb_contrareferencia
+select * from tb_patient
+update tb_doctor set password = '12345678' where id = 1;
